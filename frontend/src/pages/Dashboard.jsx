@@ -64,6 +64,14 @@ const Dashboard = () => {
     }
 
     const { coreMetrics, loanReadiness, forecasts, aiAdvisor, benchmark, financialMetrics } = data;
+
+    const getRiskColor = (score) => {
+        if (score < 40) return { border: 'border-risk-safe', text: 'text-risk-safe' };
+        if (score < 70) return { border: 'border-risk-warn', text: 'text-risk-warn' };
+        return { border: 'border-risk-high', text: 'text-risk-high' };
+    };
+
+    const riskColor = getRiskColor(coreMetrics.riskScore);
     const isCollapseHigh = coreMetrics.collapseProbability > 50;
 
     return (
