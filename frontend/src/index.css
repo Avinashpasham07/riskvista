@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* Premium SaaS Light Context */
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+
+  /* Brand Accents */
+  --color-brand-blue: #2563eb;
+  --color-brand-indigo: #4f46e5;
+
+  /* Risk Indicators */
+  --color-risk-safe: #059669;
+  --color-risk-warn: #d97706;
+  --color-risk-high: #dc2626;
+
+  /* Typography */
+  --font-sans: "Inter", "Geist", system-ui, sans-serif;
+}
+
+/* Base Body Styles for a SaaS Engine */
+@layer base {
+  body {
+    @apply bg-zinc-50 text-zinc-900 font-sans antialiased overflow-x-hidden;
+    background-image: radial-gradient(circle at 50% -20%, #eff6ff 0%, #fafafa 50%);
+    background-attachment: fixed;
+  }
+
+  /* Custom thin scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1aa;
+  }
+}
+
+/* Reusable UI Components Pattern */
+@layer components {
+
+  /* The core component backing for every widget */
+  /* The core component backing for every widget */
+  .premium-card {
+    @apply relative border border-zinc-200 bg-white rounded-2xl shadow-xl transition-all duration-300;
+  }
+
+  .premium-card-hover {
+    @apply hover:shadow-2xl hover:border-zinc-300 transition-all duration-300;
+  }
+
+  .primary-btn {
+    @apply px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-medium transition-all shadow-md hover:shadow-lg active:scale-[0.98] duration-200;
+  }
+
+  .glass-input {
+    @apply w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all shadow-sm;
+  }
+}
+
+@layer utilities {
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-dot-thick-neutral-300 {
+    background-image: radial-gradient(circle, #d4d4d8 2px, transparent 2px);
+    background-size: 30px 30px;
+  }
+
+  .dark .bg-dot-thick-neutral-800 {
+    background-image: radial-gradient(circle, #27272a 2px, transparent 2px);
+    background-size: 30px 30px;
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(to right,
+        var(--color-zinc-900) 0%,
+        var(--color-brand-blue) 50%,
+        var(--color-zinc-900) 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .health-pulse {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-ring {
+
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scale(1.05);
+    }
+  }
+
+  .status-glow-emerald {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+}
+
+/* Global overriding for Recharts tooltips to look premium */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.recharts-default-tooltip {
+  @apply !bg-white/90 !backdrop-blur-md !border-zinc-200 !rounded-xl !shadow-xl !px-4 !py-3 !text-zinc-900;
+}
