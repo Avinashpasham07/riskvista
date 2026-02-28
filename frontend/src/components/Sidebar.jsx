@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { LayoutDashboard, SlidersHorizontal, Settings, LogOut, ChartLine, Database } from 'lucide-react';
+import { LayoutDashboard, SlidersHorizontal, Settings, LogOut, ChartLine, Database, FileSpreadsheet } from 'lucide-react';
 
 const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -16,6 +16,7 @@ const Sidebar = () => {
         { path: '/data-entry', label: 'Data Input', icon: Database },
         { path: '/simulate', label: 'What-If Engine', icon: SlidersHorizontal },
         { path: '/forecast', label: 'Forecast', icon: ChartLine },
+        { path: '/daily-ledger', label: 'Daily Ledger', icon: FileSpreadsheet },
     ];
 
     // Auto-expand on hover if collapsed

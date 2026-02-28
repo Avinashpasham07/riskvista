@@ -44,10 +44,10 @@ const Forecast = () => {
         const fetchForecastData = async () => {
             try {
                 const response = await apiClient.get('dashboard');
-                if (response.data && response.data.forecasts) {
+                if (response.status === 200 && response.data && response.data.forecasts) {
                     setData(response.data);
                 } else {
-                    setData({ forecasts: [] });
+                    setError('Forecast intelligence requires baseline financial records.');
                 }
             } catch (err) {
                 console.error("Dashboard Forecast API Error:", err);

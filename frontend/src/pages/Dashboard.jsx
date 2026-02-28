@@ -16,7 +16,11 @@ const Dashboard = () => {
         const fetchDashboardData = async () => {
             try {
                 const response = await apiClient.get('dashboard');
-                setData(response.data);
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    setError('Unable to retrieve records. Please ensure your financial data is uploaded.');
+                }
             } catch (err) {
                 console.error("Dashboard Fetch Error:", err);
                 if (err.response?.status === 404) {

@@ -12,6 +12,7 @@ const authRoutes = require('./routes/authRoutes');
 const financeRoutes = require('./routes/financeRoutes');
 const simulationRoutes = require('./routes/simulationRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const dailyRoutes = require('./routes/dailyRoutes');
 
 const app = express();
 
@@ -46,6 +47,7 @@ apiRouter.use('/auth', authLimiter, authRoutes);
 apiRouter.use('/financial-records', financeRoutes);
 apiRouter.use('/simulate', simulationRoutes);
 apiRouter.use('/dashboard', dashboardRoutes);
+apiRouter.use('/daily', dailyRoutes);
 
 app.use('/api', apiLimiter, apiRouter);
 

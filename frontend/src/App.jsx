@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import DataEntry from './pages/DataEntry';
 import Simulator from './pages/Simulator';
 import Forecast from './pages/Forecast';
+import DailyLedger from './pages/DailyLedger';
 import Landing from './pages/Landing';
 
 // App Base
@@ -37,6 +38,7 @@ function App() {
               <Route path="/simulate" element={<Simulator />} />
               {/* Phase 18 Forecast */}
               <Route path="/forecast" element={<Forecast />} />
+              <Route path="/daily-ledger" element={<DailyLedger />} />
             </Route>
           </Route>
 
