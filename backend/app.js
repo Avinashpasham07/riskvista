@@ -38,14 +38,16 @@ const authLimiter = rateLimit({
     message: 'Too many authentication attempts from this IP, please try again after 15 minutes',
 });
 
-app.use('/api', apiLimiter);
-
 app.use(express.json());
 
-app.use('/api/auth', authLimiter, authRoutes);
-app.use('/api/financial-records', financeRoutes);
-app.use('/api/simulate', simulationRoutes);
-app.use('/api/dashboard', dashboardRoutes);
+const apiRouter = express.Router();
+
+apiRouter.use('/auth', authLimiter, authRoutes);
+apiRouter.use('/financial-records', financeRoutes);
+apiRouter.use('/simulate', simulationRoutes);
+apiRouter.use('/dashboard', dashboardRoutes);
+
+app.use('/api', apiLimiter, apiRouter);
 
 app.get('/', (req, res) => {
     res.send('Startup Financial Risk Intelligence Platform API is running');

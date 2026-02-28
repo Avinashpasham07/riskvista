@@ -7,7 +7,11 @@ import axios from 'axios';
  */
 
 const getBaseURL = () => {
-    const url = import.meta.env.VITE_API_BASE_URL || '/api';
+    let url = import.meta.env.VITE_API_BASE_URL || '/api';
+    // Ensure absolute URLs from environment variables include the /api prefix if missing
+    if (url.startsWith('http') && !url.includes('/api')) {
+        url = url.endsWith('/') ? `${url}api` : `${url}/api`;
+    }
     return url.endsWith('/') ? url : `${url}/`;
 };
 
